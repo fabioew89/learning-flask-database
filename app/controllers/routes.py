@@ -8,3 +8,7 @@ def index():
 @app.route('/outro', methods=['GET', 'POST'])
 def outro():
     return render_template('outro.html')
+
+@app.route('/dados', methods=['GET', 'POST'])
+def dados():
+    return render_template('dados.html')
