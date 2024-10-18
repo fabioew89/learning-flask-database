@@ -1,26 +1,27 @@
 from flask import request, render_template, redirect, url_for 
 from app import app
-from app.models.database import User, db
+from app.models import User, db
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
     return render_template('index.html')
 
-@app.route('/outro', methods=['GET', 'POST'])
-def outro():
-    return render_template('outro.html')
-
-@app.route('/dados', methods=['GET', 'POST'])
-def dados():
-    return render_template('dados.html')
-
 ########## ########## ########## ########## ########## 
-
+# Rota 1
 @app.route('/users')
 def user_list():
-    users = db.session.execute(db.select(User).order_by(User.username)).scalars()
+    users = db.session.execute(db.select(User).order_by(User.id)).scalars()
     return render_template('user/list.html', users=users)
 
+
+
+
+
+
+
+
+
+# Rota 2
 @app.route("/users/create", methods=["GET", "POST"])
 def user_create():
     if request.method == "POST":
@@ -34,11 +35,13 @@ def user_create():
 
     return render_template("user/create.html")
 
+# Rota 3
 @app.route("/user/<int:id>")
 def user_detail(id):
     user = db.get_or_404(User, id)
     return render_template("user/detail.html", user=user)
 
+# Rota 4
 @app.route("/user/<int:id>/delete", methods=["GET", "POST"])
 def user_delete(id):
     user = db.get_or_404(User, id)
