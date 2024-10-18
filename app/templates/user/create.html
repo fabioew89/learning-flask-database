@@ -1,11 +1,10 @@
 {% extends "base.html" %}
+
+{% block title %}
+New user
+{% endblock %}
+
 {% block content %}
-<nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item">User</li>
-        <li class="breadcrumb-item" aria-current="page">Create</li>
-    </ol>
-</nav>
 
 <h1 class="display-4">Create</h1>
 <p class="lead">Este é um simples componente jumbotron para chamar mais atenção a um determinado conteúdo ou
@@ -14,19 +13,17 @@
 <hr class="my-4">
 <p>Ele usa classes utilitárias para tipografia e espaçamento de conteúdo, dentro do maior container.</p>
 
-<form action="{{url_for('user_create')}}" method="post">
+<form action="{{url_for('user_create')}}" method="post" autocomplete="off">
     <div class="form-group">
-        <label for="username"></label>
-        <input type="text" name="username" id="username" class="form-control" placeholder="Username" required>
+        <label for="f_username"></label>
+        <input type="text" name="f_username" id="f_username" class="form-control" placeholder="Username" required>
 
-        <label for="email"></label>
-        <input type="email" name="email" id="email" class="form-control" placeholder="Email" required>
+        <label for="f_email"></label>
+        <input type="email" name="f_email" id="f_email" class="form-control" placeholder="Email" required>
 
         <input type="submit" name="enviar" id="enviar" class="btn btn-primary" style="margin-top: 1rem;">
     </div>
 
 </form>
-
-<!-- <a href="{{ url_for('user_create')}}" class="btn btn-primary btn-lg" style="margin-bottom: 1rem;">Criar Usuario</a> -->
 
 {% endblock %}
