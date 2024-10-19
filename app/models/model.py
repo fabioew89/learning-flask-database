@@ -1,4 +1,4 @@
-from app.models import db
+from app import db
 from sqlalchemy.orm import Mapped, mapped_column
 
 class Users(db.Model):
