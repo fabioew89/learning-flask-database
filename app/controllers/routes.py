@@ -5,7 +5,7 @@ from app import app
 def index():
     return render_template('index.html')
 
-@app.route('/new-user', methods=['GET', 'POST'])
+@app.route('/user_create', methods=['GET', 'POST'])
 def user_create():
     if request.method == 'POST':
         if not request.form['f-username'] or not request.form['f-email']:
