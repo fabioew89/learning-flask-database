@@ -1,15 +1,30 @@
-from flask import render_template, request
-from app import app
+from flask import render_template, request, flash, redirect
+from app import app, db
+from app.models.model import Users
 
 @app.route('/')
 def index():
     return render_template('index.html')
 
-@app.route('/user_create', methods=['GET', 'POST'])
-def user_create():
-    if request.method == 'POST':
-        if not request.form['f-username'] or not request.form['f-email']:
-            username = request.form['f-username']
-            email = request.form['f-email']
-            return render_template('user/create.html', username=username, email=email)
-    return render_template('user/create.html')
+@app.route('/add_user', methods=['GET', 'POST'])
+def add_user():
+    username = request.form.get('username')
+    email = request.form.get('email')
+
+    print(f'username {username}, email: {email}')
+
+    if username and email:
+        new_user = Users(username=username, email=email)
+
+        try:
+            db.session.add(new_user)
+            db.session.commit()
+            flash(f'Usuario adicionado com sucesso', 'success')
+        except Exception as e:
+            db.session.rollback()
+            flash(f'Erro ao adicionar usuario {e}', 'error')
+        
+        return redirect('/')
+    else:
+        flash(f'preencha os campos', 'error')
+        return redirect('/')
