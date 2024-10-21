@@ -5,8 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}
-    data
-    {% endblock %}</title>
+        data
+        {% endblock %}</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
         integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
@@ -15,13 +15,29 @@
 
     <!-- Navigation -->
     <nav aria-label="breadcrumb" style="margin-bottom: 1rem;">
-        <ol class="breadcrumb">
+        <ul class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{url_for('index')}}">Home</a></li>
-        </ol>
+            <li class="breadcrumb-item"><a href="{{url_for('cadastro')}}">Cadastro</a></li>
+        </ul>
     </nav>
 
     <!-- Jumbotron -->
     <div class="jumbotron">
+
+        <!-- Flash messagens -->
+        <div>
+            {% with messages = get_flashed_messages() %}
+            <ul class=list-group>
+                {% if messages %}
+                {% for message in messages %}
+                <li class="list-group-item list-group-item-danger">{{ message }}</li>
+                {% else %}
+                <li class="list-group-item list-group-item-success">{{ message }}</li>
+                {% endfor %}
+                {% endif %}
+            </ul>
+            {% endwith %}
+        </div>
 
         <!-- Site content -->
         {% block content %}
@@ -29,6 +45,7 @@
         {% endblock %}
 
     </div>
+
 </body>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

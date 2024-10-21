@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ super() }} - Formulário de Cadastro
+{% endblock %}
+
+{% block content  %}
+<h1 class="h3 mb-3 font-weight-normal">
+    Faça um Cadastro
+</h1>
+<form action="" method="post">
+    {{ form.usuario.label.hidden }}
+    {{ form.usuario(class='form-control', placeholder='Informe o user name') }}
+    <br>
+    {{ form.email.label.hidden }}
+    {{ form.email(class='form-control', placeholder='informe seu email') }}
+
+    <label for="submit"  hidden>teste</label>
+    <input type="submit" class="btn btn-primary" style="margin-top: 1rem;">
+
+{% endblock %}

@@ -1,10 +1,17 @@
-from flask import request, render_template, flash, redirect, url_for
+from flask import Flask, request, render_template, flash, redirect, url_for
 from app import app, db
 from app.models.model import Users
+from app.controllers.forms import CadastroForm
 
 @app.route('/')
 def index():
     return render_template('index.html')
+
+@app.route('/cadastro', methods=['GET', 'POST'])
+def cadastro():
+    form = CadastroForm()
+    if form.validate
+    return render_template('cadastro.html', form=form)
 
 @app.route('/add_user', methods=['GET', 'POST'])
 def add_user():
@@ -12,8 +19,9 @@ def add_user():
         username = request.form.get('username')
         email = request.form.get('email')
 
-        #print variaveis username e email
-        print(f'username {username}, email: {email}')
+        # # Este print serve apenas como log das variáveis 
+        # que estão sendo inseridas do formulário de create user
+        # print(f'username {username}, email: {email}')
 
         if username and email:
             new_user = Users(username=username, email=email)
