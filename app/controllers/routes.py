@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, flash, redirect, url_for
+from flask import request, render_template, flash, redirect, url_for
 from app import app, db
 from app.models.model import Users
 from app.controllers.forms import CadastroForm
@@ -10,7 +10,6 @@ def index():
 @app.route('/cadastro', methods=['GET', 'POST'])
 def cadastro():
     form = CadastroForm()
-    if form.validate
     return render_template('cadastro.html', form=form)
 
 @app.route('/add_user', methods=['GET', 'POST'])
